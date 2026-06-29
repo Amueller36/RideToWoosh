@@ -1,0 +1,18 @@
+# RideToWooshHID — Partitionslayout (4 MB Flash, kein OTA)
+# ---------------------------------------------------------------------
+# Liegt diese Datei im Sketch-Ordner, nutzt der ESP32-Arduino-Build sie
+# automatisch (überschreibt das Partitionsschema im Werkzeuge-Menü).
+#
+# Kernidee (Stabilität von Anfang an):
+#   * "nvs"  = System-NVS — hier schreibt der BLE-Stack laufend Bonding-Keys
+#              und WiFi seine PHY-Kalibrierung.
+#   * "cfg"  = EIGENE NVS-Partition nur für die feste Tastenbelegung.
+# Durch die Trennung können häufige Bonding-Writes weder mit unserer Config
+# um Schreibzugriffe konkurrieren (keine Races) noch sie bei einem vollen/
+# fragmentierten System-NVS beschädigen.
+#
+# Name,     Type, SubType,  Offset,    Size,      Flags
+nvs,        data, nvs,      0x9000,    0x5000,
+factory,    app,  factory,  0x10000,   0x320000,
+cfg,        data, nvs,      0x330000,  0x8000,
+coredump,   data, coredump, 0x338000,  0x10000,

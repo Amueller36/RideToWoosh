@@ -1,0 +1,57 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! Please fill in the details below — they make bugs
+        far faster to reproduce. Check the README's Troubleshooting table first.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: input
+    id: board
+    attributes:
+      label: ESP32-S3 board
+      placeholder: e.g. ESP32-S3-DevKitC-1 N16R8 (16MB flash, 8MB OPI PSRAM)
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: ESP32 Arduino core + each library version (NimBLE-Arduino, ESPAsyncWebServer, AsyncTCP, ESP32-NIMBLE-Keyboard)
+      placeholder: |
+        core: 3.0.x
+        NimBLE-Arduino: 2.2.x
+        ESPAsyncWebServer (ESP32Async): ...
+        AsyncTCP (ESP32Async): ...
+        ESP32-NIMBLE-Keyboard (Berg0162): ...
+    validations:
+      required: true
+  - type: input
+    id: enddevice
+    attributes:
+      label: End device + app
+      placeholder: e.g. Apple TV 4K (tvOS 18) + MyWhoosh
+    validations:
+      required: true
+  - type: textarea
+    id: serial
+    attributes:
+      label: Serial Monitor output (115200)
+      description: Paste the boot log and anything around the failure.
+      render: text
+    validations:
+      required: false
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: false
